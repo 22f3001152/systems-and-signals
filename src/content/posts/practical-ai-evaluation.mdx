@@ -1,0 +1,32 @@
+---
+title: "The smallest useful AI evaluation loop"
+description: "Move an AI feature from impressive demo to dependable product with a compact, repeatable evaluation workflow."
+slug: "practical-ai-evaluation"
+publishedAt: 2026-09-04
+category: "AI"
+tags: [llm, evaluation]
+cover: ../../assets/posts/ai-workbench.svg
+coverAlt: "Abstract AI evaluation workbench"
+featured: true
+order: 2
+---
+
+import VideoEmbed from '../../components/VideoEmbed.astro';
+
+AI demos reward the happy path. Products are defined by everything around it: ambiguous input, incomplete context, latency, and model changes.
+
+## Begin with real examples
+
+Collect a small set of representative tasks from the actual workflow, including awkward cases.
+
+```mermaid
+flowchart TD
+  A[Real examples] --> B[Run candidate]
+  B --> C[Score useful dimensions]
+  C --> D[Inspect failures]
+  D --> B
+```
+
+<VideoEmbed src="https://www.youtube-nocookie.com/embed/aircAruvnKk" title="A visual introduction to neural networks" caption="Video embeds support YouTube or hosted video files." />
+
+Store the model, parameters, prompts, retrieval settings, and evaluation-set version with every run.

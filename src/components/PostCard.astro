@@ -1,0 +1,18 @@
+---
+import { Image } from 'astro:assets';
+import type { Post } from '../lib/posts';
+import { categoryUrl, formatDate, postUrl, readingMinutes } from '../lib/posts';
+interface Props { post: Post; featured?: boolean; }
+const { post, featured = false } = Astro.props;
+---
+<article class:list={['group overflow-hidden rounded-2xl border surface', featured && 'md:grid md:grid-cols-[1.15fr_1fr]']}>
+  <a href={postUrl(post.data.slug)} class="block overflow-hidden" tabindex="-1" aria-hidden="true">
+    <Image src={post.data.cover} alt="" widths={[480,800]} sizes={featured ? '(min-width:768px) 55vw, 100vw' : '(min-width:768px) 33vw, 100vw'} class:list={['h-52 w-full object-cover transition duration-500 group-hover:scale-[1.02]', featured && 'md:h-full md:min-h-72']} />
+  </a>
+  <div class:list={['flex flex-col p-6', featured && 'justify-center md:p-9']}>
+    <div class="mb-4 flex flex-wrap items-center gap-2 text-xs font-medium uppercase tracking-[.14em]"><a class="accent hover:underline" href={categoryUrl(post.data.category)}>{post.data.category}</a><span class="muted">·</span><time class="muted" datetime={post.data.publishedAt.toISOString()}>{formatDate(post.data.publishedAt)}</time></div>
+    <h2 class:list={['display-font text-2xl leading-tight', featured && 'sm:text-3xl']}><a class="decoration-[var(--accent)] underline-offset-4 hover:underline" href={postUrl(post.data.slug)}>{post.data.title}</a></h2>
+    <p class="mt-3 leading-7 muted">{post.data.description}</p>
+    <p class="mt-5 text-xs font-medium uppercase tracking-[.14em] muted">{readingMinutes(post.body)} min read</p>
+  </div>
+</article>

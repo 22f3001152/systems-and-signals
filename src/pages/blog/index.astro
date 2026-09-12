@@ -1,0 +1,9 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PostCard from '../../components/PostCard.astro';
+import { categoryUrl, publishedPosts } from '../../lib/posts';
+const posts=publishedPosts(await getCollection('posts'));
+const categories=[...new Set(posts.map(post=>post.data.category))];
+---
+<BaseLayout title="Writing · Systems & Signals" description="Articles on frameworks, software design, AI, careers, and lessons from real work."><header class="mx-auto max-w-6xl px-5 pb-12 pt-16 sm:px-8 sm:pt-24"><p class="text-xs font-semibold uppercase tracking-[.18em] accent">The archive</p><h1 class="display-font mt-3 text-5xl sm:text-6xl">Writing</h1><p class="mt-5 max-w-2xl text-lg leading-8 muted">Practical explanations, considered opinions, and notes from where systems meet people.</p><nav class="mt-8 flex flex-wrap gap-2" aria-label="Filter by topic">{categories.map(category=><a class="rounded-full border px-4 py-2 text-sm surface" href={categoryUrl(category)}>{category}</a>)}</nav></header><section class="mx-auto grid max-w-6xl gap-7 px-5 sm:px-8 md:grid-cols-2 lg:grid-cols-3">{posts.map(post=><PostCard post={post}/>)}</section></BaseLayout>

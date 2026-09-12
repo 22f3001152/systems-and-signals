@@ -1,0 +1,28 @@
+---
+const base = import.meta.env.BASE_URL;
+const path = Astro.url.pathname;
+const links = [{ href: base, label: 'Home' }, { href: `${base}blog/`, label: 'Writing' }, { href: `${base}learn/`, label: 'Learn' }, { href: `${base}about/`, label: 'About' }];
+---
+<header class="sticky top-0 z-40 border-b backdrop-blur-xl surface">
+  <div class="mx-auto flex min-h-16 max-w-6xl items-center justify-between gap-4 px-5 sm:px-8">
+    <a href={base} class="flex items-center gap-3 font-semibold tracking-tight" aria-label="Systems and Signals home">
+      <span class="grid size-8 place-items-center rounded-full accent-bg accent" aria-hidden="true">S</span><span>Systems &amp; Signals</span>
+    </a>
+    <div class="flex items-center gap-1 sm:gap-3">
+      <nav aria-label="Primary navigation"><ul class="flex items-center gap-1 text-sm">
+        {links.map((link) => { const active = link.href === base ? path === base : path.startsWith(link.href); return <li><a href={link.href} aria-current={active ? 'page' : undefined} class:list={['rounded-full px-3 py-2 transition-colors hover:bg-[var(--accent-soft)]', active ? 'accent-bg accent' : 'muted']}>{link.label}</a></li>; })}
+      </ul></nav>
+      <button id="theme-toggle" type="button" class="grid size-10 place-items-center rounded-full border surface" aria-label="Switch color theme">
+        <svg class="size-4 dark:hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z" /></svg>
+        <svg class="hidden size-4 dark:block" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="4" /><path d="M12 2v2M12 20v2M4.93 4.93l1.42 1.42M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.42-1.42M17.66 6.34l1.41-1.41" /></svg>
+      </button>
+    </div>
+  </div>
+</header>
+<script>
+  document.querySelector('#theme-toggle')?.addEventListener('click', () => {
+    const dark = document.documentElement.classList.toggle('dark');
+    localStorage.setItem('theme', dark ? 'dark' : 'light');
+    window.dispatchEvent(new CustomEvent('theme-change'));
+  });
+</script>

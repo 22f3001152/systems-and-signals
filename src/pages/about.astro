@@ -1,0 +1,42 @@
+---
+import { Image } from 'astro:assets';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import profileImage from '../assets/posts/Progile_BW.png';
+---
+
+<BaseLayout title="About Varad · Systems & Signals" description="Meet Varad, the software engineer behind Systems & Signals.">
+  <div class="mx-auto grid max-w-5xl gap-12 px-5 py-16 sm:px-8 sm:py-24 md:grid-cols-[.7fr_1.3fr]">
+    <aside>
+      <Image src={profileImage} alt="Portrait of Varad" width={471} height={468} class="aspect-square max-w-xs rounded-3xl border object-cover surface" />
+      <p class="mt-5 text-sm leading-6 muted">Software engineer · Systems thinker · Writer</p>
+      <a class="mt-4 inline-flex items-center gap-2 text-sm font-semibold accent hover:underline" href="https://www.linkedin.com/in/varad-a-g-3" rel="me">
+        Connect on LinkedIn <span aria-hidden="true">↗</span>
+      </a>
+    </aside>
+
+    <article class="prose-blog">
+      <p class="text-xs font-semibold uppercase tracking-[.18em] accent">About me</p>
+      <h1 class="display-font !mt-3 text-5xl">Hello, I’m Varad.</h1>
+      <p class="text-xl leading-9">I’m a software engineer interested in how thoughtful design turns complex technology into systems that work well in the real world.</p>
+
+      <p>My work continually brings me back to the same questions: How do we choose the right framework without chasing trends? How do we design software that remains understandable as it grows? Where can AI create genuine value, and where does it merely add complexity?</p>
+
+      <h2>Why Systems &amp; Signals?</h2>
+      <p><strong>Systems</strong> are the software, teams, constraints, and decisions we deliberately assemble. <strong>Signals</strong> are the lessons hidden in production incidents, changing requirements, industry conventions, and everyday work. This blog is where I connect the two.</p>
+
+      <h2>What I write about</h2>
+      <ul>
+        <li>Frameworks and tools, examined through practical use rather than hype.</li>
+        <li>Software architecture, design trade-offs, and maintainable systems.</li>
+        <li>Applied AI and the engineering required to make it dependable.</li>
+        <li>Career paths, professional growth, and common industry assumptions.</li>
+        <li>Problems and patterns encountered in real delivery environments.</li>
+      </ul>
+
+      <blockquote>I write to turn experience into something reusable: a clearer model, a sharper question, or a practical next step.</blockquote>
+
+      <h2>Let’s connect</h2>
+      <p>If these subjects overlap with your work, find me on <a href="https://www.linkedin.com/in/varad-a-g-3" rel="me">LinkedIn</a>. I’m always interested in thoughtful conversations about engineering, systems, AI, and the craft of building useful technology.</p>
+    </article>
+  </div>
+</BaseLayout>

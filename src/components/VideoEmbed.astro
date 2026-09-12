@@ -1,0 +1,11 @@
+---
+interface Props { src: string; title: string; poster?: string; caption?: string; }
+const { src, title, poster, caption } = Astro.props;
+const hosted = /\.(mp4|webm|ogg)(\?.*)?$/i.test(src);
+---
+<figure class="my-8">
+  <div class="aspect-video overflow-hidden rounded-2xl border surface">
+    {hosted ? <video class="h-full w-full" controls preload="metadata" poster={poster}><source src={src} />Your browser does not support embedded video.</video> : <iframe class="h-full w-full" src={src} title={title} loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen />}
+  </div>
+  {caption && <figcaption class="mt-2 text-center text-sm muted">{caption}</figcaption>}
+</figure>
