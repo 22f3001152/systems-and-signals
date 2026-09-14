@@ -9,7 +9,7 @@ const posts = defineCollection({
     slug: z.string().regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/),
     publishedAt: z.coerce.date(),
     updatedAt: z.coerce.date().optional(),
-    category: z.enum(['Frameworks', 'Software Design', 'AI', 'Industry', 'Career', 'Field Notes']),
+    category: z.enum(['Frameworks', 'Software Design', 'AI', 'Industry', 'Career', 'Field Notes', 'Event-Driven Architecture']),
     tags: z.array(z.string()).default([]),
     cover: image(),
     coverAlt: z.string(),
